@@ -1,0 +1,18 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="PyUnresolvedReferencesInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredIdentifiers">
+        <list>
+          <option value="app1.models.Advocate.object" />
+          <option value="app1.models.Advocate.*" />
+          <option value="comments.models.AbstractComment.objects" />
+          <option value="Online_Store.Product.models.AbstractComment.is_valid" />
+          <option value="Online_Store.Product.models.AbstractComment.data" />
+          <option value="Online_Store.Product.models.AbstractComment.objects" />
+          <option value="rest_framework.request.data" />
+        </list>
+      </option>
+    </inspection_tool>
+  </profile>
+</component>

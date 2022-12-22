@@ -51,15 +51,16 @@ class AbstractHotelOrResidential(models.Model):
     about = models.TextField()
     country = models.CharField(max_length=100)
     state = models.CharField(max_length=100)
-    city_or_section = models.CharField(max_length=100)
+    city_or_section = models.CharField(max_length=100, verbose_name='City or Section')
     address = models.TextField()
     map_link = models.URLField(max_length=200, null=True, blank=True)
     phone_number = models.PositiveBigIntegerField(unique=True, validators=[
         RegexValidator(r'^989[0-3,9]\d{8}$', 'Enter a valid phone number.', 'invalid')])
 
-    number_of_rooms = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(10)])
-    floors = models.PositiveSmallIntegerField(validators=[MinValueValidator(1), MaxValueValidator(10)])
-    capacity = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(10)])
+    number_of_rooms = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(10)],
+                                          verbose_name='Number of Rooms')
+    floors = models.PositiveSmallIntegerField()
+    capacity = models.IntegerField()
     area = models.IntegerField()
 
     is_valid = models.BooleanField(default=True)

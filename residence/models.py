@@ -17,20 +17,23 @@ class Hotel(AbstractHotelOrResidential):
 
 class HotelRoom(models.Model):
     hotel = models.ForeignKey(Hotel, on_delete=models.CASCADE, related_name='hotel_of_hotel_room')
-    room_number = models.IntegerField()
+    room_number = models.IntegerField(verbose_name='Room Number')
     floor = models.IntegerField()
     area = models.IntegerField()
 
     capacity = models.IntegerField()
-    single_beds = models.PositiveSmallIntegerField()
-    double_beds = models.PositiveSmallIntegerField()
-    extra_beds = models.PositiveSmallIntegerField()
+    single_beds = models.PositiveSmallIntegerField(verbose_name='Single Beds')
+    double_beds = models.PositiveSmallIntegerField(verbose_name='Double Beds')
+    extra_beds = models.PositiveSmallIntegerField(verbose_name='Extra Beds')
+
+    price_for_one_night = models.PositiveIntegerField(verbose_name='Price for 1 Night')
 
     is_valid = models.BooleanField(default=True)
 
 
 class Residential(AbstractHotelOrResidential):
-    residential_category = models.ForeignKey(ResidentialCategory, on_delete=models.DO_NOTHING)
+    residential_category = models.ForeignKey(ResidentialCategory, on_delete=models.DO_NOTHING,
+                                             related_name='residential')
 
 
 class HotelRoomFeature(AbstractHotelOrHotelRoomFeature):

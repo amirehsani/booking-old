@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'flight',
     'residence',
     'air',
+    'rate',
 
 
 ]

@@ -15,5 +15,5 @@ class Airplane(models.Model):
 
 class Airport(models.Model):
     name = models.CharField(max_length=200)
-    country = None
-    city = None
+    country = models.CharField(max_length=200)
+    city = models.CharField(max_length=200)

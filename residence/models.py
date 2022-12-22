@@ -26,14 +26,11 @@ class HotelRoom(models.Model):
     double_beds = models.PositiveSmallIntegerField()
     extra_beds = models.PositiveSmallIntegerField()
 
-    rate = models.ForeignKey(AbstractRate, on_delete=models.DO_NOTHING, related_name='hotel_room_rate')
-
     is_valid = models.BooleanField(default=True)
 
 
 class Residential(AbstractHotelOrResidential):
     residential_category = models.ForeignKey(ResidentialCategory, on_delete=models.DO_NOTHING)
-    rate = models.ForeignKey(AbstractRate, on_delete=models.DO_NOTHING)
 
 
 class HotelRoomFeature(AbstractHotelOrHotelRoomFeature):

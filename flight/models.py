@@ -43,3 +43,4 @@ class FlightTicket(models.Model):
     # TODO how to add flight number ?
 
     flight_class = models.PositiveSmallIntegerField(choices=FLIGHT_CLASS_CHOICE, default=1, verbose_name='Flight Class')
+

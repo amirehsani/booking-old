@@ -11,3 +11,9 @@ class User(AbstractUser):
 
     # USERNAME_FIELD = username
     # REQUIRED_FIELDS = name
+
+
+class Profile(models.Model):
+    pass
+
+# class UserManager(models.Model):

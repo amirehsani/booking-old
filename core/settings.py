@@ -28,10 +28,13 @@ INSTALLED_APPS = [
 
     'rest_framework',
 
+    'abstract',
+
     'users',
     'flight',
     'residence',
-    'air'
+    'air',
+
 
 ]
 

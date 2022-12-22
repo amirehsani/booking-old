@@ -1,25 +1,23 @@
-from django.db import models
-from core import settings
+from residence.models import *
+from air.models import *
+from abstract.models import AbstractComment
 
 
-# comment models will be abstracted from model below
-class AbstractComment(models.Model):
-    CREATED = 10
-    APPROVED = 20
-    REJECTED = 30
-    DELETED = 40
+class HotelComment(AbstractComment):
+    comment = models.ForeignKey(Hotel, on_delete=models.CASCADE, related_name='hotel_comments')
 
-    COMMENT_STATUS_CHOICES = (
-        (CREATED, 'Created'), (APPROVED, 'Approved'), (REJECTED, 'Rejected'), (DELETED, 'Deleted')
-    )
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='%(class)s')
-    text = models.TextField()
-    created_time = models.DateTimeField(auto_now_add=True)
-    validated_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True, blank=True,
-                                     related_name='validated_%(class)s')
-    # 'validated_by' shows who accepted the comment to be published
-    parent_comment = models.ForeignKey('self', on_delete=models.CASCADE)
-    status = models.PositiveSmallIntegerField(choices=COMMENT_STATUS_CHOICES, default=CREATED)
 
-    class Meta:
-        abstract = True
+class HotelRoomComment(AbstractComment):
+    comment = models.ForeignKey(HotelRoom, on_delete=models.CASCADE, related_name='hotel_room_comments')
+
+
+class ResidentialComment(AbstractComment):
+    comment = models.ForeignKey(Residential, on_delete=models.CASCADE, related_name='residential_comments')
+
+
+class AirlineComment(AbstractComment):
+    comment = models.ForeignKey(Airline, on_delete=models.CASCADE, related_name='airline_comments')
+
+
+class AirportComment(AbstractComment):
+    comment = models.ForeignKey(Airport, on_delete=models.CASCADE, related_name='airport_comments')

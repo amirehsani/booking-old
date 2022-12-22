@@ -1,31 +1,6 @@
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
-from comment.models import AbstractComment
-
-
-class Hotel(models.Model):
-    name = models.CharField(max_length=100)
-    address = models.TextField()
-    # location = models.PointField(geography=True, spatial_index=True)  # TODO import
-    country = models.CharField(max_length=100)
-    state = models.CharField(max_length=100)
-    city_or_section = models.CharField(max_length=100)
-    capacity = models.IntegerField()
-    number_of_rooms = models.IntegerField()
-    floors = models.IntegerField()
-    star = models.PositiveSmallIntegerField(validators=[MinValueValidator(1), MaxValueValidator(10)])
-    rate = None  # TODO add
-    is_valid = models.BooleanField(default=True)
-
-
-class HotelRoom(models.Model):
-    room_number = models.IntegerField()
-    hotel = models.ForeignKey(Hotel, on_delete=models.DO_NOTHING)
-    bed = models.PositiveSmallIntegerField()
-    extra_bed = models.PositiveSmallIntegerField()
-    floor = models.IntegerField()
-    services = None  # TODO add - has to be a ForeignKey
-    is_valid = models.BooleanField(default=True)
+from abstract.models import AbstractRate, AbstractHotelOrResidential, AbstractHotelOrHotelRoomFeature
 
 
 class ResidentialCategory(models.Model):
@@ -36,25 +11,30 @@ class ResidentialCategory(models.Model):
         return self.title
 
 
-class Residential(models.Model):
-    name = models.CharField(max_length=100)
-    address = models.TextField()
-    # location = models.PointField(geography=True, spatial_index=True)  # TODO import
-    country = models.CharField(max_length=100)
-    state = models.CharField(max_length=100)
-    city_or_section = models.CharField(max_length=100)
+class Hotel(AbstractHotelOrResidential):
+    star = models.PositiveSmallIntegerField(validators=[MinValueValidator(1), MaxValueValidator(10)])
+
+
+class HotelRoom(models.Model):
+    hotel = models.ForeignKey(Hotel, on_delete=models.CASCADE, related_name='hotel_of_hotel_room')
+    room_number = models.IntegerField()
+    floor = models.IntegerField()
+    area = models.IntegerField()
+
     capacity = models.IntegerField()
-    services = None  # TODO add - has to be a ForeignKey
+    single_beds = models.PositiveSmallIntegerField()
+    double_beds = models.PositiveSmallIntegerField()
+    extra_beds = models.PositiveSmallIntegerField()
+
+    rate = models.ForeignKey(AbstractRate, on_delete=models.DO_NOTHING, related_name='hotel_room_rate')
+
     is_valid = models.BooleanField(default=True)
 
 
-class HotelComment(AbstractComment):
-    comment = models.ForeignKey(Residential, on_delete=models.CASCADE, related_name='hotel_comments')
+class Residential(AbstractHotelOrResidential):
+    residential_category = models.ForeignKey(ResidentialCategory, on_delete=models.DO_NOTHING)
+    rate = models.ForeignKey(AbstractRate, on_delete=models.DO_NOTHING)
 
 
-class HotelRoomComment(AbstractComment):
-    comment = models.ForeignKey(Residential, on_delete=models.CASCADE, related_name='hotel_room_comments')
-
-
-class ResidentialComment(AbstractComment):
-    comment = models.ForeignKey(Residential, on_delete=models.CASCADE, related_name='residential_comments')
+class HotelRoomFeature(AbstractHotelOrHotelRoomFeature):
+    room = models.ForeignKey(HotelRoom, on_delete=models.CASCADE, related_name='room_feature')

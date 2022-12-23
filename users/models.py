@@ -4,7 +4,7 @@ from django.db import models
 
 
 class User(AbstractUser):
-    phone_number = models.PositiveBigIntegerField(unique=True, validators=[
+    phone_number = models.PositiveBigIntegerField(unique=True, null=True, blank=True, validators=[
         RegexValidator(r'^989[0-3,9]\d{8}$', 'Enter a valid phone number.', 'invalid')])
 
     is_anonymous = models.BooleanField(default=True)

@@ -17,17 +17,26 @@ class HotelAdmin(admin.ModelAdmin):
 
 
 class HotelRoomAdmin(admin.ModelAdmin):
-    list_display = ('id', 'hotel', 'room_number', 'floor', 'area', 'capacity', 'single_beds',
+    list_display = ('id', 'get_hotel_name', 'room_number', 'floor', 'area', 'capacity', 'single_beds',
                     'double_beds', 'extra_beds', 'is_valid',)
     list_filter = ('is_valid',)
-    search_fields = ('hotels',)
+    search_fields = ('get_hotel_name',)
+
+    @admin.display(description='Hotel')
+    def get_hotel_name(self, obj):
+        return obj.hotel.name
 
 
 class ResidentialAdmin(admin.ModelAdmin):
-    list_display = ('id', 'residential_category', 'name', 'country', 'state', 'city_or_section', 'phone_number',
-                    'address', 'number_of_rooms', 'floors', 'capacity', 'is_valid')
+    list_display = (
+        'id', 'residential_category', 'name', 'country', 'state', 'city_or_section', 'phone_number',
+        'address', 'number_of_rooms', 'floors', 'capacity', 'is_valid')
     list_filter = ('residential_category', 'country', 'is_valid')
     search_fields = ('name', 'country', 'state', 'city_or_section', 'is_valid')
+
+    @admin.display(description='Residential Category')
+    def residential_category(self, obj):
+        return obj.residential_category.title
 
 
 class HotelRoomFeatureAdmin(admin.ModelAdmin):

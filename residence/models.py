@@ -1,6 +1,7 @@
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
-from abstract.models import AbstractRate, AbstractHotelOrResidential, AbstractHotelOrHotelRoomFeature
+
+from abstract.models import AbstractHotelOrResidential, AbstractHotelOrHotelRoomFeature
 
 
 class ResidentialCategory(models.Model):

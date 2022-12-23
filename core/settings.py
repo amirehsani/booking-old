@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     'abstract',
 
     'users',
+    'comment',
     'flight',
     'residence',
     'air',

@@ -35,3 +35,4 @@ class FlightTicket(models.Model):
 
     flight = models.ForeignKey(Flight, on_delete=models.CASCADE, related_name='flight_number_for_ticket')
     flight_class = models.PositiveSmallIntegerField(choices=FLIGHT_CLASS_CHOICE, default=1, verbose_name='Flight Class')
+    price_for_one_passenger = models.PositiveIntegerField(default=1, verbose_name='Price for 1 Passenger')

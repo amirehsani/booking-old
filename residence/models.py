@@ -27,14 +27,15 @@ class HotelRoom(models.Model):
     double_beds = models.PositiveSmallIntegerField(verbose_name='Double Beds')
     extra_beds = models.PositiveSmallIntegerField(verbose_name='Extra Beds')
 
-    price_for_one_night = models.PositiveIntegerField(verbose_name='Price for 1 Night')
-
+    price_for_one_night = models.PositiveIntegerField(default=1, verbose_name='Price for 1 Night')
     is_valid = models.BooleanField(default=True)
 
 
 class Residential(AbstractHotelOrResidential):
     residential_category = models.ForeignKey(ResidentialCategory, on_delete=models.DO_NOTHING,
                                              related_name='residential')
+
+    price_for_one_night = models.PositiveIntegerField(default=1, verbose_name='Price for 1 Night')
 
 
 class HotelRoomFeature(AbstractHotelOrHotelRoomFeature):

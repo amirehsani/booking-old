@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     'air',
     'rate',
     'reservation',
+    'cart',
 
 
 ]

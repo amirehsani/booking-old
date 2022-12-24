@@ -4,6 +4,7 @@ from django.db import models
 class Airline(models.Model):
     name = models.CharField(max_length=100)
     origin_country = models.CharField(max_length=100, verbose_name='Origin Country')
+    about = models.TextField(default='Airline')
 
 
 class Airplane(models.Model):

@@ -10,14 +10,22 @@ class HotelRoomReservation(models.Model):
     hotel_room = models.ForeignKey(HotelRoom, on_delete=models.DO_NOTHING)
     number_of_guests = models.PositiveSmallIntegerField()
 
+    checkin = models.DateField(auto_now=True)
+    checkout = models.DateField(auto_now=True)
+    count_of_nights = models.PositiveIntegerField(default=1)
+
 
 class ResidentialReservation(models.Model):
     user = models.ForeignKey(User, on_delete=models.DO_NOTHING)
     residential = models.ForeignKey(Residential, on_delete=models.DO_NOTHING)
     number_of_guests = models.PositiveSmallIntegerField()
 
+    checkin = models.DateField(auto_now=True)
+    checkout = models.DateField(auto_now=True)
+    count_of_nights = models.PositiveIntegerField(default=1)
+
 
 class FlightTicketReservation(models.Model):
     user = models.ForeignKey(User, on_delete=models.DO_NOTHING)
     flight_ticket = models.ForeignKey(FlightTicket, on_delete=models.DO_NOTHING)
-    number_of_passengers = models.PositiveSmallIntegerField()
+    number_of_passengers = models.PositiveSmallIntegerField(default=1)

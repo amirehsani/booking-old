@@ -1,6 +1,7 @@
 from django.contrib import admin
 from .models import UserCart
 
+
 class UserCartAdmin(admin.ModelAdmin):
     list_display = (
         'id', 'get_username', 'cart_number', 'is_payed', 'get_hotel_room_reservation', 'get_residential_reservation',

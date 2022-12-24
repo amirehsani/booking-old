@@ -28,9 +28,8 @@ class HotelRoomAdmin(admin.ModelAdmin):
 
 
 class ResidentialAdmin(admin.ModelAdmin):
-    list_display = (
-        'id', 'residential_category', 'name', 'country', 'state', 'city_or_section', 'phone_number',
-        'address', 'number_of_rooms', 'floors', 'capacity', 'price_per_night', 'is_valid')
+    list_display = ('id', 'residential_category', 'name', 'country', 'state', 'city_or_section', 'phone_number',
+                    'address', 'number_of_rooms', 'floors', 'capacity', 'price_per_night', 'is_valid')
     list_filter = ('residential_category', 'price_per_night', 'country', 'is_valid')
     search_fields = ('name', 'country', 'state', 'city_or_section', 'is_valid')
 

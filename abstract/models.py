@@ -47,7 +47,8 @@ class AbstractHotelOrHotelRoomFeature(models.Model):
 
 
 class AbstractHotelOrResidential(models.Model):
-    name = models.CharField(max_length=100)
+    id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=100, unique=True)
     about = models.TextField()
     country = models.CharField(max_length=100)
     state = models.CharField(max_length=100)

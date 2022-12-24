@@ -5,6 +5,7 @@ from abstract.models import AbstractHotelOrResidential, AbstractHotelOrHotelRoom
 
 
 class ResidentialCategory(models.Model):
+
     title = models.CharField(max_length=64)
     is_valid = models.BooleanField(default=True)
 
@@ -17,6 +18,7 @@ class Hotel(AbstractHotelOrResidential):
 
 
 class HotelRoom(models.Model):
+    id = models.AutoField(primary_key=True)
     hotel = models.ForeignKey(Hotel, on_delete=models.CASCADE, related_name='hotel_of_hotel_room')
     room_number = models.IntegerField(verbose_name='Room Number')
     floor = models.IntegerField()

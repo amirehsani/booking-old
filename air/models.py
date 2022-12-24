@@ -9,8 +9,8 @@ class Airline(models.Model):
 
 class Airplane(models.Model):
     manufacturer = models.CharField(max_length=60)
-    name = models.CharField(max_length=50)
-    register_number = models.BigIntegerField(verbose_name='Register Number')
+    name = models.CharField(max_length=50, unique=True)
+    register_number = models.BigIntegerField(verbose_name='Register Number', unique=True)
     number_of_seats = models.IntegerField(verbose_name='Number of Seats')
 
 

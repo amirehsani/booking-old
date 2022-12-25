@@ -9,7 +9,7 @@ class HotelCommentView(ListCreateAPIView):
 
     def get_queryset(self):
         name = self.kwargs['hotel']
-        return HotelComment.objects.filter(hotel__name=name, status='Approved')
+        return HotelComment.objects.filter(hotel__name=name, status='Approved').all()
 
 
 class HotelRoomCommentView(ListCreateAPIView):
@@ -18,7 +18,7 @@ class HotelRoomCommentView(ListCreateAPIView):
 
     def get_queryset(self):
         id = self.kwargs['hotel_room_id']
-        return HotelRoomComment.objects.filter(hotel_room__id=id, status='Approved')
+        return HotelRoomComment.objects.filter(hotel_room__id=id, status='Approved').all()
 
 
 class ResidentialCommentView(ListCreateAPIView):
@@ -27,7 +27,7 @@ class ResidentialCommentView(ListCreateAPIView):
 
     def get_queryset(self):
         name = self.kwargs['residential']
-        return ResidentialComment.objects.filter(residential__name=name, status='Approved')
+        return ResidentialComment.objects.filter(residential__name=name, status='Approved').all()
 
 
 class AirlineCommentView(ListCreateAPIView):
@@ -36,7 +36,7 @@ class AirlineCommentView(ListCreateAPIView):
 
     def get_queryset(self):
         name = self.kwargs['airline']
-        return AirlineComment.objects.filter(airline__name=name, status='Approved')
+        return AirlineComment.objects.filter(airline__name=name, status='Approved').all()
 
 
 class AirportCommentView(ListCreateAPIView):
@@ -45,4 +45,4 @@ class AirportCommentView(ListCreateAPIView):
 
     def get_queryset(self):
         name = self.kwargs['airport']
-        return AirportComment.objects.filter(airport__name=name, status='Approved')
+        return AirportComment.objects.filter(airport__name=name, status='Approved').all()

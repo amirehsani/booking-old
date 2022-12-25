@@ -9,7 +9,7 @@ class HotelRateDisplay(ListCreateAPIView):
 
     def get_queryset(self):
         name = self.kwargs['hotel']
-        return HotelRate.objects.filter(hotel__name=name)
+        return HotelRate.objects.filter(hotel__name=name).all()
 
 
 class HotelRoomRateDisplay(ListCreateAPIView):
@@ -18,7 +18,7 @@ class HotelRoomRateDisplay(ListCreateAPIView):
 
     def get_queryset(self):
         id = self.kwargs['hotel_room_id']
-        return HotelRoomRate.objects.filter(hotel_room__id=id)
+        return HotelRoomRate.objects.filter(hotel_room__id=id).all()
 
 
 class ResidentialRateDisplay(ListCreateAPIView):
@@ -27,7 +27,7 @@ class ResidentialRateDisplay(ListCreateAPIView):
 
     def get_queryset(self):
         name = self.kwargs['residential']
-        return ResidentialRate.objects.filter(residential__name=name)
+        return ResidentialRate.objects.filter(residential__name=name).all()
 
 
 class AirlineRateDisplay(ListCreateAPIView):
@@ -36,4 +36,4 @@ class AirlineRateDisplay(ListCreateAPIView):
 
     def get_queryset(self):
         name = self.kwargs['airline']
-        return AirlineRate.objects.filter(airline__name=name)
+        return AirlineRate.objects.filter(airline__name=name).all()

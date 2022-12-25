@@ -1,9 +1,13 @@
-from rest_framework.decorators import api_view, permission_classes
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.generics import RetrieveAPIView
+from abstract.permissions import IsOwner
+from .serializers import ProfileSerializer
+from .models import *
 
 
-# UserProfile display API
-@api_view(['GET'])
-@permission_classes(IsAuthenticated)
-def user_profile_display(request, username):
-    pass
+class ProfileDisplay(RetrieveAPIView):
+    permission_classes = [IsOwner]
+    serializer_class = ProfileSerializer
+
+    def get_queryset(self):
+        username = self.kwargs['user']
+        return Profile.objects.get(Profile__user__username=username)

@@ -1,10 +1,10 @@
-from rest_framework.permissions import IsAuthenticatedOrReadOnly
+from abstract.permissions import *
 from rest_framework.generics import ListCreateAPIView
 from .serializers import *
 
 
 class HotelCommentView(ListCreateAPIView):
-    permission_classes = [IsAuthenticatedOrReadOnly]
+    permission_classes = [IsOwnerOrReadOnly]
     serializer_class = HotelCommentSerializer
 
     def get_queryset(self):
@@ -13,7 +13,7 @@ class HotelCommentView(ListCreateAPIView):
 
 
 class HotelRoomCommentView(ListCreateAPIView):
-    permission_classes = [IsAuthenticatedOrReadOnly]
+    permission_classes = [IsOwnerOrReadOnly]
     serializer_class = HotelRoomCommentSerializer
 
     def get_queryset(self):
@@ -22,7 +22,7 @@ class HotelRoomCommentView(ListCreateAPIView):
 
 
 class ResidentialCommentView(ListCreateAPIView):
-    permission_classes = [IsAuthenticatedOrReadOnly]
+    permission_classes = [IsOwnerOrReadOnly]
     serializer_class = ResidentialCommentSerializer
 
     def get_queryset(self):
@@ -31,7 +31,7 @@ class ResidentialCommentView(ListCreateAPIView):
 
 
 class AirlineCommentView(ListCreateAPIView):
-    permission_classes = [IsAuthenticatedOrReadOnly]
+    permission_classes = [IsOwnerOrReadOnly]
     serializer_class = AirlineCommentSerializer
 
     def get_queryset(self):
@@ -40,7 +40,7 @@ class AirlineCommentView(ListCreateAPIView):
 
 
 class AirportCommentView(ListCreateAPIView):
-    permission_classes = [IsAuthenticatedOrReadOnly]
+    permission_classes = [IsOwnerOrReadOnly]
     serializer_class = AirportCommentSerializer
 
     def get_queryset(self):

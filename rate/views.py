@@ -1,10 +1,10 @@
 from rest_framework.generics import ListCreateAPIView
 from .serializers import *
-from rest_framework.permissions import IsAuthenticatedOrReadOnly
+from abstract.permissions import *
 
 
 class HotelRateDisplay(ListCreateAPIView):
-    permission_classes = [IsAuthenticatedOrReadOnly]
+    permission_classes = [IsOwnerOrReadOnly]
     serializer_class = HotelRateSerializer
 
     def get_queryset(self):
@@ -13,7 +13,7 @@ class HotelRateDisplay(ListCreateAPIView):
 
 
 class HotelRoomRateDisplay(ListCreateAPIView):
-    permission_classes = [IsAuthenticatedOrReadOnly]
+    permission_classes = [IsOwnerOrReadOnly]
     serializer_class = HotelRoomRateSerializer
 
     def get_queryset(self):
@@ -22,7 +22,7 @@ class HotelRoomRateDisplay(ListCreateAPIView):
 
 
 class ResidentialRateDisplay(ListCreateAPIView):
-    permission_classes = [IsAuthenticatedOrReadOnly]
+    permission_classes = [IsOwnerOrReadOnly]
     serializer_class = ResidentialRateSerializer
 
     def get_queryset(self):
@@ -31,7 +31,7 @@ class ResidentialRateDisplay(ListCreateAPIView):
 
 
 class AirlineRateDisplay(ListCreateAPIView):
-    permission_classes = [IsAuthenticatedOrReadOnly]
+    permission_classes = [IsOwnerOrReadOnly]
     serializer_class = AirlineRateSerializer
 
     def get_queryset(self):

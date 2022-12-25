@@ -7,6 +7,7 @@ urlpatterns = [
     path('profile<str:username>', include('users.urls')),
     path('', include('rate.urls')),
     path('', include('comment.urls')),
+    path('', include('users.urls')),
 ]
 
 admin.site.site_header = 'Booking Administration Panel'

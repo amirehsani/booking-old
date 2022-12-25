@@ -6,23 +6,23 @@ from .serializers import *
 
 class ResidentialCategoryDisplay(ListAPIView):
     permission_classes = [AllowAny]
-    queryset = None
+    queryset = ResidentialCategory.objects.all()
     serializer_class = ResidentialCategorySerializer
 
 
 class HotelDisplay(ListAPIView):
     permission_classes = [AllowAny]
-    queryset = None
+    queryset = Hotel.objects.all()
     serializer_class = HotelSerializer
 
 
 class HotelRoomDisplay(ListAPIView):
     permission_classes = [AllowAny]
-    queryset = None
+    queryset = HotelRoom.objects.all()
     serializer_class = HotelRoomSerializer
 
 
 class Residential(ListAPIView):
     permission_classes = [AllowAny]
-    queryset = None
+    queryset = Residential.objects.all()
     serializer_class = ResidentialSerializer

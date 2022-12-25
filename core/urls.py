@@ -8,6 +8,8 @@ urlpatterns = [
     path('', include('rate.urls')),
     path('', include('comment.urls')),
     path('', include('users.urls')),
+    path('', include('residence.urls')),
+    path('', include('reservation.urls')),
 ]
 
 admin.site.site_header = 'Booking Administration Panel'

@@ -1,11 +1,11 @@
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
+# from gallery.models import HotelRoomGallery
 
 from abstract.models import AbstractHotelOrResidential, AbstractHotelOrHotelRoomFeature
 
 
 class ResidentialCategory(models.Model):
-
     title = models.CharField(max_length=64)
     is_valid = models.BooleanField(default=True)
 
@@ -28,6 +28,7 @@ class HotelRoom(models.Model):
     single_beds = models.PositiveSmallIntegerField(verbose_name='Single Beds')
     double_beds = models.PositiveSmallIntegerField(verbose_name='Double Beds')
     extra_beds = models.PositiveSmallIntegerField(verbose_name='Extra Beds')
+#     gallery = models.OneToOneField(HotelRoomGallery, on_delete=models.DO_NOTHING)
 
     price_per_night = models.PositiveIntegerField(default=1, verbose_name='Price per Night')
     is_valid = models.BooleanField(default=True)

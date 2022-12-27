@@ -10,13 +10,13 @@ class AirLineDisplay(ListAPIView):
     serializer_class = AirlineSerializer
 
 
-class AirplaneSerializer(ListAPIView):
+class AirplaneDisplay(ListAPIView):
     queryset = Airplane.objects.all()  # TODO only get each airplane model once
     permission_classes = [AllowAny]
     serializer_class = AirplaneSerializer
 
 
-class AirportSerializer(ListAPIView):
+class AirportDisplay(ListAPIView):
     queryset = Airport.objects.all()
     permission_classes = [AllowAny]
     serializer_class = AirportSerializer

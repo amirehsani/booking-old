@@ -1,8 +1,18 @@
 from rest_framework.serializers import ModelSerializer
+
+from flight.serializers import FlightTicketSerializer
+from residence.serializers import HotelRoomSerializer, ResidentialSerializer
 from .models import HotelRoomReservation, FlightTicketReservation, ResidentialReservation
 
 
 class HotelRoomReservationSerializer(ModelSerializer):
+    price_per_night = HotelRoomSerializer(many=True)
+    hotel = HotelRoomSerializer(many=True)
+    about = HotelRoomSerializer(many=True)
+    address = HotelRoomSerializer(many=True)
+    map_link = HotelRoomSerializer(many=True)
+    phone_number = HotelRoomSerializer(many=True)
+
     class Meta:
         model = HotelRoomReservation
         fields = ['id', 'user', 'hotel_room', 'number_of_guests', 'checkin', 'checkout', 'count_of_nights',
@@ -11,6 +21,8 @@ class HotelRoomReservationSerializer(ModelSerializer):
 
 
 class ResidentialReservationSerializer(ModelSerializer):
+    residential_category = ResidentialSerializer
+
     class Meta:
         model = ResidentialReservation
         fields = ['id', 'user', 'residential_category', 'residential', 'number_of_guests', 'checkin', 'checkout',
@@ -18,8 +30,8 @@ class ResidentialReservationSerializer(ModelSerializer):
 
 
 class FlightTicketReservationSerializer(ModelSerializer):
+    flight_class = FlightTicketSerializer(many=True)
+
     class Meta:
         model = FlightTicketReservation
-        fields = ['user', 'number_of_passengers', 'flight_class', 'price_for_one_passenger', 'origin', 'destination',
-                  'flight_number', 'flight_type', 'start_time', 'duration', 'capacity', 'airport', 'airline',
-                  'airplane']
+        fields = ['user', 'number_of_passengers', 'flight_class']

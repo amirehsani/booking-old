@@ -25,5 +25,5 @@ class HotelRoomSerializer(ModelSerializer):
 class ResidentialSerializer(ModelSerializer):
     class Meta:
         model = Residential
-        fields = ['id', 'price_per_night', 'name', 'about', 'country', 'state', 'city_or_section', 'number_of_rooms',
-                  'floors', 'capacity', 'area']
+        fields = ['id', 'residential_category', 'price_per_night', 'name', 'about', 'country', 'state',
+                  'city_or_section', 'number_of_rooms', 'floors', 'capacity', 'area']

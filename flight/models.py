@@ -24,13 +24,11 @@ class Flight(models.Model):
 
 
 class FlightTicket(models.Model):
-    ECONOMY = 1
-    BUSINESS = 2
-    FIRST = 3
+
     FLIGHT_CLASS_CHOICE = (
-        (ECONOMY, 'economy'),
-        (BUSINESS, 'business'),
-        (FIRST, 'first')
+        (1, 'economy'),
+        (2, 'business'),
+        (3, 'first')
     )
     id = models.AutoField(primary_key=True)
     flight = models.ForeignKey(Flight, on_delete=models.CASCADE, related_name='flight_number_for_ticket')

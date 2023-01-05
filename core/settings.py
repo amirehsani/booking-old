@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'exchange',
     'gallery',
     'drf_spectacular',
-    'rest_framework_simplejwt'
+    'rest_framework_simplejwt',
+    'django_extensions',
 
 ]
 
@@ -129,4 +130,9 @@ REST_FRAMEWORK = {
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     )
 
+}
+
+GRAPH_MODELS = {
+    'all_applications': True,
+    'group_models': True,
 }

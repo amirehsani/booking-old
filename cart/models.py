@@ -1,4 +1,6 @@
 import uuid
+from django.db.models import UniqueConstraint
+
 from reservation.models import *
 
 
@@ -18,4 +20,7 @@ class UserCart(models.Model):
     created_time = models.DateTimeField(auto_now=True)
     modified_time = models.DateTimeField(auto_now_add=True)
 
-    unique_together = ['user', 'cart_number']
+    class Meta:
+        constraints = [
+            UniqueConstraint(fields=['user', 'cart_number'], name='unique_user_cart')
+        ]

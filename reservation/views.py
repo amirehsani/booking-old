@@ -1,42 +1,47 @@
-from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly
-from rest_framework.generics import CreateAPIView
-from rest_framework.views import APIView
+from rest_framework import generics
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from rest_framework_simplejwt.authentication import JWTAuthentication
 
 from .serializers import *
 
 
-class FlightReservation(APIView):
+# TODO needs to be completed
+
+class FlightReservationAPI(generics.ListCreateAPIView):
     authentication_classes = (JWTAuthentication,)
     permission_classes = [IsAuthenticatedOrReadOnly]
+    serializer_class = FlightTicketReservationSerializer
+
+    def get_queryset(self):
+        flight_ticket = self.request.data.get('flight_ticket')
+        number_of_passengers = self.request.data.get('number_of_passengers')
 
 
-class ResidentialOrHotelReservation(APIView):
+class ResidentialReservationAPI(generics.ListCreateAPIView):
     authentication_classes = (JWTAuthentication,)
     permission_classes = [IsAuthenticatedOrReadOnly]
+    serializer_class = ResidentialReservationSerializer
 
-# class HotelRoomReservationDisplay(CreateAPIView):
-#     permission_classes = [IsAuthenticated]
-#     serializer_class = HotelRoomReservationSerializer
-#
-#     def get_queryset(self):
-#         room_id = self.kwargs['room_id']
-#         return HotelRoomReservation.objects.filter(hotel_room__id=room_id).get()
-#
-#
-# class ResidentialReservationDisplay(CreateAPIView):
-#     permission_classes = [IsAuthenticated]
-#     serializer_class = ResidentialReservationSerializer
-#
-#     def get_queryset(self):
-#         residential_id = self.kwargs['residential_id']
-#         return ResidentialReservation.objects.filter(residential__id=residential_id).get()
-#
-#
-# class FlightTicketReservationDisplay(CreateAPIView):
-#     permission_classes = [IsAuthenticated]
-#     serializer_class = FlightTicketReservationSerializer
-#
-#     def get_queryset(self):
-#         ticket_id = self.kwargs['ticket_id']
-#         return FlightTicketReservation.obejcts.filter(flight_ticket__id=ticket_id).get()
+    def get_queryset(self):
+        residential = self.request.data.get('residential')
+        number_of_guests = self.request.data.get('number_of_guests')
+        checkin = self.request.data.get('checkin')
+        checkout = self.request.data.get('checkout')
+        count_of_nights = self.request.data.get('count_of_nights')
+
+        residential_reserved = ResidentialReservation.objects.filter(checkin=checkin, checkout=checkout)
+
+
+class HotelRoomReservationAPI(generics.ListCreateAPIView):
+    authentication_classes = (JWTAuthentication,)
+    permission_classes = [IsAuthenticatedOrReadOnly]
+    serializer_class = HotelRoomReservationSerializer
+
+    def get_queryset(self):
+        hotel_room = self.request.data.get('hotel_room')
+        number_of_guests = self.request.data.get('number_of_guests')
+        checkin = self.request.data.get('checkin')
+        checkout = self.request.data.get('checkout')
+        count_of_nights = self.request.data.get('count_of_nights')
+
+        residences_reserved = HotelRoomReservation.objects.filter(checkin=checkin, checkout=checkout)

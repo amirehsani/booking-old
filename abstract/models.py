@@ -76,10 +76,10 @@ class AbstractHotelOrResidential(models.Model):
 
 
 class AbstractReservation(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='User Reservation')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='%(class)s_user_reservations')
     status = models.BooleanField(default=True)
-    created_time = models.DateTimeField(auto_now_add=True)
-    modified_time = models.DateTimeField(auto_now=True)
+    created_time = models.DateTimeField(auto_now=True, null=True, blank=True)
+    modified_time = models.DateTimeField(auto_now_add=True, null=True, blank=True)
 
     class Meta:
         abstract = True

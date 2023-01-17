@@ -1,6 +1,9 @@
 from django.core.validators import RegexValidator, MinValueValidator, MaxValueValidator
 from django.db import models
+from users.models import User
 from core import settings
+
+
 # from gallery.models import ResidentialGallery
 
 
@@ -64,9 +67,19 @@ class AbstractHotelOrResidential(models.Model):
     floors = models.PositiveSmallIntegerField()
     capacity = models.IntegerField()
     area = models.IntegerField()
-#     gallery = models.OneToOneField(ResidentialGallery, on_delete=models.DO_NOTHING)
+    #     gallery = models.OneToOneField(ResidentialGallery, on_delete=models.DO_NOTHING)
 
     is_valid = models.BooleanField(default=True)
+
+    class Meta:
+        abstract = True
+
+
+class AbstractReservation(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='User Reservation')
+    status = models.BooleanField(default=True)
+    created_time = models.DateTimeField(auto_now_add=True)
+    modified_time = models.DateTimeField(auto_now=True)
 
     class Meta:
         abstract = True

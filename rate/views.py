@@ -1,9 +1,12 @@
 from rest_framework.generics import ListCreateAPIView
+from rest_framework_simplejwt.authentication import JWTAuthentication
+
 from .serializers import *
 from abstract.permissions import *
 
 
 class HotelRateDisplay(ListCreateAPIView):
+    authentication_classes = [JWTAuthentication]
     permission_classes = [IsOwnerOrReadOnly]
     serializer_class = HotelRateSerializer
 
@@ -13,6 +16,7 @@ class HotelRateDisplay(ListCreateAPIView):
 
 
 class HotelRoomRateDisplay(ListCreateAPIView):
+    authentication_classes = [JWTAuthentication]
     permission_classes = [IsOwnerOrReadOnly]
     serializer_class = HotelRoomRateSerializer
 
@@ -22,6 +26,7 @@ class HotelRoomRateDisplay(ListCreateAPIView):
 
 
 class ResidentialRateDisplay(ListCreateAPIView):
+    authentication_classes = [JWTAuthentication]
     permission_classes = [IsOwnerOrReadOnly]
     serializer_class = ResidentialRateSerializer
 
@@ -31,6 +36,7 @@ class ResidentialRateDisplay(ListCreateAPIView):
 
 
 class AirlineRateDisplay(ListCreateAPIView):
+    authentication_classes = [JWTAuthentication]
     permission_classes = [IsOwnerOrReadOnly]
     serializer_class = AirlineRateSerializer
 

@@ -1,9 +1,12 @@
+from rest_framework_simplejwt.authentication import JWTAuthentication
+
 from abstract.permissions import *
 from rest_framework.generics import ListCreateAPIView
 from .serializers import *
 
 
 class HotelCommentView(ListCreateAPIView):
+    authentication_classes = [JWTAuthentication]
     permission_classes = [IsOwnerOrReadOnly]
     serializer_class = HotelCommentSerializer
 
@@ -13,6 +16,7 @@ class HotelCommentView(ListCreateAPIView):
 
 
 class HotelRoomCommentView(ListCreateAPIView):
+    authentication_classes = [JWTAuthentication]
     permission_classes = [IsOwnerOrReadOnly]
     serializer_class = HotelRoomCommentSerializer
 
@@ -22,6 +26,7 @@ class HotelRoomCommentView(ListCreateAPIView):
 
 
 class ResidentialCommentView(ListCreateAPIView):
+    authentication_classes = [JWTAuthentication]
     permission_classes = [IsOwnerOrReadOnly]
     serializer_class = ResidentialCommentSerializer
 
@@ -31,6 +36,7 @@ class ResidentialCommentView(ListCreateAPIView):
 
 
 class AirlineCommentView(ListCreateAPIView):
+    authentication_classes = [JWTAuthentication]
     permission_classes = [IsOwnerOrReadOnly]
     serializer_class = AirlineCommentSerializer
 
@@ -40,6 +46,7 @@ class AirlineCommentView(ListCreateAPIView):
 
 
 class AirportCommentView(ListCreateAPIView):
+    authentication_classes = [JWTAuthentication]
     permission_classes = [IsOwnerOrReadOnly]
     serializer_class = AirportCommentSerializer
 

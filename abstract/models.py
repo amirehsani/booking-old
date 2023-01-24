@@ -67,6 +67,7 @@ class AbstractHotelOrResidential(models.Model):
     floors = models.PositiveSmallIntegerField()
     capacity = models.IntegerField()
     area = models.IntegerField()
+    # TODO
     #     gallery = models.OneToOneField(ResidentialGallery, on_delete=models.DO_NOTHING)
 
     is_valid = models.BooleanField(default=True)

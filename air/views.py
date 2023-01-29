@@ -7,7 +7,7 @@ from rest_framework.response import Response
 from rest_framework_simplejwt.authentication import JWTAuthentication
 
 from .serializers import *
-from abstract.redis_client import redis_client
+from abstract.redis_client import redis_client0
 
 
 # WE'RE TESTING REDIS FOR OUR DJANGO VIEWS USING DRF FUNCTIONAL VIEWS.
@@ -16,14 +16,14 @@ from abstract.redis_client import redis_client
 @permission_classes([AllowAny])
 def airline_display(request):
     if request.method == 'GET':
-        airline = redis_client.get('arline')
+        airline = redis_client0.get('arline')
 
         if airline is None:
             print("Couldn't find data in cache, retrieving from database...")
             airline = Airline.objects.all()
-            redis_client.setex('airline', 60*60*24*7, json.dumps(airline))
+            redis_client0.setex('airline', 60*60*24*7, json.dumps(airline))
 
-        redis_client.get('airline')
+        redis_client0.get('airline')
         serializer = AirlineSerializer(airline)
         return Response(serializer.data)
 

@@ -1,5 +1,5 @@
 import json
-
+import redis
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import AllowAny
 from rest_framework.generics import ListAPIView
@@ -9,23 +9,27 @@ from rest_framework_simplejwt.authentication import JWTAuthentication
 from .serializers import *
 from abstract.redis_client import redis_client0
 
-
 # WE'RE TESTING REDIS FOR OUR DJANGO VIEWS USING DRF FUNCTIONAL VIEWS.
+
+redis_pool = redis.ConnectionPool(host='localhost', port=6379, db=9)
+redis_client_9 = redis.Redis(connection_pool=redis_pool, decode_responses=True)
+
 
 @api_view(['GET', 'POST'])
 @permission_classes([AllowAny])
 def airline_display(request):
     if request.method == 'GET':
-        airline = redis_client0.get('arline')
+        airline = redis_client_9.get('arline')
 
         if airline is None:
             print("Couldn't find data in cache, retrieving from database...")
             airline = Airline.objects.all()
-            redis_client0.setex('airline', 60*60*24*7, json.dumps(airline))
+            redis_client_9.setex('airline', 60 * 60 * 24 * 7, json.dumps(airline))
 
-        redis_client0.get('airline')
+        redis_client_9.get('airline')
         serializer = AirlineSerializer(airline)
         return Response(serializer.data)
+
 
 # TODO Change the default view back to DRF CBV with caching capabilities.
 

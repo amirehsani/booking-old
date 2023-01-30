@@ -1,13 +1,16 @@
 import json
 import redis
+from django.utils.decorators import method_decorator
+from django.views.decorators.cache import cache_page
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import AllowAny
 from rest_framework.generics import ListAPIView
 from rest_framework.response import Response
 from rest_framework_simplejwt.authentication import JWTAuthentication
 
+from core.settings import DEFAULT_CACHE_TTL
 from .serializers import *
-from abstract.redis_client import redis_client0
+
 
 # WE'RE TESTING REDIS FOR OUR DJANGO VIEWS USING DRF FUNCTIONAL VIEWS.
 
@@ -45,6 +48,10 @@ class AirplaneDisplay(ListAPIView):
     authentication_classes = [JWTAuthentication]
     permission_classes = [AllowAny]
     serializer_class = AirplaneSerializer
+
+    @method_decorator(cache_page(DEFAULT_CACHE_TTL * 2))  # TODO CHECK IF IT's CORRECT
+    def get(self, request, *args, **kwargs):
+        return self.list(request, *args, **kwargs)
 
 
 class AirportDisplay(ListAPIView):

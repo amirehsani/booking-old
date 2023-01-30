@@ -16,6 +16,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    # DEFAULT
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -23,10 +24,15 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    # THIRD-PARTY
     'rest_framework',
     'debug_toolbar',
     'abstract',
+    'drf_spectacular',
+    'rest_framework_simplejwt',
+    'django_extensions',
 
+    # LOCAL
     'users',
     'comment',
     'flight',
@@ -37,10 +43,6 @@ INSTALLED_APPS = [
     'cart',
     'exchange',
     'gallery',
-    'drf_spectacular',
-    'rest_framework_simplejwt',
-    'django_extensions',
-
 ]
 
 MIDDLEWARE = [

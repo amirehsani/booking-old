@@ -49,6 +49,7 @@ class AirplaneDisplay(ListAPIView):
     permission_classes = [AllowAny]
     serializer_class = AirplaneSerializer
 
+    # USING DRF CACHING
     @method_decorator(cache_page(DEFAULT_CACHE_TTL * 2))
     def get(self, request, *args, **kwargs):
         return self.list(request, *args, **kwargs)

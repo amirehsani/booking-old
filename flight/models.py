@@ -9,9 +9,9 @@ class Flight(models.Model):
         (CHARTER, 'charter')
     )
 
-    origin = models.CharField(max_length=100)
-    destination = models.CharField(max_length=100)
-    flight_number = models.PositiveIntegerField(verbose_name='Flight Number')
+    _origin = models.CharField(max_length=100)
+    _destination = models.CharField(max_length=100)
+    _flight_number = models.PositiveIntegerField(verbose_name='Flight Number')
     flight_type = models.BooleanField(choices=FLIGHT_TYPE_CHOICE, default=SCHEDULED, verbose_name='Flight Type')
 
     start_time = models.DateTimeField(verbose_name='Start Time')
@@ -30,7 +30,7 @@ class FlightTicket(models.Model):
         (2, 'business'),
         (3, 'first')
     )
-    id = models.AutoField(primary_key=True)
+    _id = models.AutoField(primary_key=True)
     flight = models.ForeignKey(Flight, on_delete=models.CASCADE, related_name='flight_number_for_ticket')
     flight_class = models.PositiveSmallIntegerField(choices=FLIGHT_CLASS_CHOICE, default=1, verbose_name='Flight Class')
     price_for_one_passenger = models.PositiveIntegerField(default=1, verbose_name='Price for 1 Passenger')

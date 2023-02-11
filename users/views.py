@@ -13,4 +13,4 @@ class ProfileDisplay(RetrieveUpdateAPIView):
 
     def get_queryset(self):
         username = self.kwargs['user']
-        return Profile.objects.filter(Profile__user__username=username).get()
+        return Profile.objects.filter(Profile__user__username=username).get(,

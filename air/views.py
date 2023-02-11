@@ -11,45 +11,45 @@ from rest_framework_simplejwt.authentication import JWTAuthentication
 from core.settings import DEFAULT_CACHE_TTL
 from .serializers import *
 
-
-# WE'RE TESTING REDIS FOR OUR DJANGO VIEWS USING DRF FUNCTIONAL VIEWS.
-
-redis_pool = redis.ConnectionPool(host='localhost', port=6379, db=9)
-redis_client_9 = redis.Redis(connection_pool=redis_pool, decode_responses=True)
+''' Redis configuration for DRF views. '''
+redis_pool = redis.ConnectionPool(host='localhost', port=6379, db=0)
+redis_client_0 = redis.Redis(connection_pool=redis_pool, decode_responses=True)
 
 
 @api_view(['GET', 'POST'])
 @permission_classes([AllowAny])
 def airline_display(request):
     if request.method == 'GET':
-        airline = redis_client_9.get('arline')
+        airline = redis_client_0.get('arline')
 
         if airline is None:
             print("Couldn't find data in cache, retrieving from database...")
             airline = Airline.objects.all()
-            redis_client_9.setex('airline', 60 * 60 * 24 * 7, json.dumps(airline))
+            redis_client_0.setex('airline', 60 * 60 * 24 * 7, json.dumps(airline))
 
-        redis_client_9.get('airline')
+        redis_client_0.get('airline')
         serializer = AirlineSerializer(airline)
         return Response(serializer.data)
 
 
-# TODO Change the default view back to DRF CBV with caching capabilities.
+class AirLineDisplay(ListAPIView):
+    queryset = Airline.objects.all()
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [AllowAny]
+    serializer_class = AirlineSerializer
 
-# class AirLineDisplay(ListAPIView):
-#     queryset = Airline.objects.all()
-#     authentication_classes = [JWTAuthentication]
-#     permission_classes = [AllowAny]
-#     serializer_class = AirlineSerializer
+    # USING DRF CACHING
+    @method_decorator(cache_page(DEFAULT_CACHE_TTL * 2))
+    def get(self, request, *args, **kwargs):
+        return self.list(request, *args, **kwargs)
 
 
 class AirplaneDisplay(ListAPIView):
-    queryset = Airplane.objects.all()  # TODO only get each airplane model once
+    queryset = Airplane.objects.all()
     authentication_classes = [JWTAuthentication]
     permission_classes = [AllowAny]
     serializer_class = AirplaneSerializer
 
-    # USING DRF CACHING
     @method_decorator(cache_page(DEFAULT_CACHE_TTL * 2))
     def get(self, request, *args, **kwargs):
         return self.list(request, *args, **kwargs)
@@ -60,3 +60,7 @@ class AirportDisplay(ListAPIView):
     authentication_classes = [JWTAuthentication]
     permission_classes = [AllowAny]
     serializer_class = AirportSerializer
+
+    @method_decorator(cache_page(DEFAULT_CACHE_TTL * 2))
+    def get(self, request, *args, **kwargs):
+        return self.list(request, *args, **kwargs)

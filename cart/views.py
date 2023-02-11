@@ -6,6 +6,7 @@ from .serializers import UserCartSerializer
 from .models import UserCart
 
 
+# No need for caching, not a pricey task
 class UserCartDisplay(RetrieveUpdateAPIView):
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsOwner]

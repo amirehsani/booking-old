@@ -4,6 +4,8 @@ from abstract.permissions import *
 from rest_framework.generics import ListCreateAPIView
 from .serializers import *
 
+''' Not using caching due to high frequency and large number of comments in production.'''
+
 
 class HotelCommentView(ListCreateAPIView):
     authentication_classes = [JWTAuthentication]

@@ -1,0 +1,13 @@
+Sample web project representing a platform with capability of booking residence and flight tickets. All the tech and tools that are used in this project:
+
+Python -> main language
+Django -> main back-end framework
+DRF -> creating APIs, managing request/response cycles.
+
+PostgreSQL -> main database
+Redis -> main caching data storage - secondary database
+
+Docker -> containerizing the project
+Swagger -> API documentation
+
+see more in requirements.txt

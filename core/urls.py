@@ -14,9 +14,9 @@ urlpatterns = [
     path('', include('reservation.urls')),
     path('', include('cart.urls')),
 
-    # URL
+    # API Documentation
     path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
-    path('api/schema/swagger-ui/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
+    path('api/schema/docs/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
 
     # Simple JWT
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),

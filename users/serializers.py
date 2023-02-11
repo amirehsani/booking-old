@@ -24,7 +24,7 @@ class LoginStep1Serializer(serializers.ModelSerializer):
         phone_number = validated_data['phone_number']
 
         try:
-            user = User.objects.get(,
+            user = User.objects.get()
         except User.DoesNotExist:
             random_username = f'user_{phone_number}'
             user = User.objects.create_user(random_username, phone_number=phone_number)
@@ -47,7 +47,7 @@ class LoginStep2Serializer(serializers.ModelSerializer):
         otp = attrs['otp_code']
 
         try:
-            user = User.objects.get(,
+            user = User.objects.get()
         except User.DoesNotExist:
             raise ValidationError('Phone number does not exist')
 

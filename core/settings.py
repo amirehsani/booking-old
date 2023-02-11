@@ -1,8 +1,7 @@
 from pathlib import Path
-
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
 from decouple import config
 
+# Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
@@ -14,7 +13,6 @@ DEBUG = config('DEBUG', cast=bool, default=False)
 ALLOWED_HOSTS = []
 
 # Application definition
-
 INSTALLED_APPS = [
     # DEFAULT
     'django.contrib.admin',
@@ -89,6 +87,10 @@ DATABASES = {
     }
 }
 
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Booking Project',
+
+}
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -122,6 +124,7 @@ AUTH_USER_MODEL = 'users.User'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 REST_FRAMEWORK = {
+    # drf-spectacular settings
     'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',

@@ -9,3 +9,7 @@ redis_client5 = redis.Redis(host='localhost', port=6379, db=5)
 redis_client6 = redis.Redis(host='localhost', port=6379, db=6)
 redis_client7 = redis.Redis(host='localhost', port=6379, db=7)
 
+'''
+db0 and db1 are used for text and model caching
+db2 is used for picture caching (under 'gallery' app)
+'''

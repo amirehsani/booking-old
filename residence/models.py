@@ -18,8 +18,8 @@ class Hotel(AbstractHotelOrResidential):
 
 
 class HotelRoom(models.Model):
-    _id = models.AutoField(primary_key=True)
-    _hotel = models.ForeignKey(Hotel, on_delete=models.CASCADE, related_name='hotel_of_hotel_room')
+    id = models.AutoField(primary_key=True)
+    hotel = models.ForeignKey(Hotel, on_delete=models.CASCADE, related_name='hotel_of_hotel_room')
     room_number = models.IntegerField(verbose_name='Room Number')
     floor = models.IntegerField()
     area = models.IntegerField()

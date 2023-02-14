@@ -14,7 +14,7 @@ urlpatterns = [
     path('', include('reservation.urls')),
     path('', include('cart.urls')),
 
-    # API Documentation
+    # API Documentation - Spectacular - Swagger
     path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
     path('api/schema/docs/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
 

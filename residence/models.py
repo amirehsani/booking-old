@@ -36,7 +36,7 @@ class HotelRoom(models.Model):
 
 class Residential(AbstractHotelOrResidential):
     residential_category = models.ForeignKey(ResidentialCategory, on_delete=models.DO_NOTHING,
-                                             related_name='residential')
+                                             related_name='residential_category')
 
     price_per_night = models.PositiveIntegerField(default=1, verbose_name='Price per Night')
 

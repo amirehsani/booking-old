@@ -16,7 +16,7 @@ class HotelRoomReservation(AbstractReservation):
 
 
 class ResidentialReservation(AbstractReservation):
-    residential = models.ForeignKey(Residential, on_delete=models.DO_NOTHING)
+    residential = models.ForeignKey(Residential, on_delete=models.DO_NOTHING, related_name='residential')
     number_of_guests = models.PositiveSmallIntegerField()
 
     checkin = models.DateField(auto_now=True)

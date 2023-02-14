@@ -25,10 +25,12 @@ INSTALLED_APPS = [
     # THIRD-PARTY
     'rest_framework',
     'debug_toolbar',
-    'abstract',
     'drf_spectacular',
     'rest_framework_simplejwt',
     'django_extensions',
+
+    # CLEAN CODE
+    'abstract',
 
     # LOCAL
     'users',
@@ -89,8 +91,10 @@ DATABASES = {
 
 SPECTACULAR_SETTINGS = {
     'TITLE': 'Booking Project',
-
+    'DESCRIPTION': 'Back-end web app for flight ticket / residence reservation',
+    'SERVE_INCLUDE_SCHEMA': False,
 }
+
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
     {

@@ -21,12 +21,11 @@ class HotelRoomReservationSerializer(ModelSerializer):
 
 
 class ResidentialReservationSerializer(ModelSerializer):
-    residential_category = ResidentialSerializer
+    residential_category = ResidentialSerializer()
 
     class Meta:
         model = ResidentialReservation
-        fields = ['id', 'user', 'residential_category', 'residential', 'number_of_guests', 'checkin', 'checkout',
-                  'name', 'about', 'address', 'map_link', 'phone_number']
+        fields = ['id', 'user', 'residential_category', 'residential', 'number_of_guests', 'checkin', 'checkout']
 
 
 class FlightTicketReservationSerializer(ModelSerializer):

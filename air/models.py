@@ -1,4 +1,6 @@
 from django.db import models
+
+
 # from gallery.models import AirportGallery
 
 
@@ -19,4 +21,9 @@ class Airport(models.Model):
     name = models.CharField(max_length=200)
     country = models.CharField(max_length=200)
     city = models.CharField(max_length=200)
+
+
 #    gallery = models.OneToOneField(AirportGallery, on_delete=models.DO_NOTHING)
+
+class AirServices(models.Model):
+    ...

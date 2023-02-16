@@ -1,5 +1,6 @@
 import json
 import redis
+import logging
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -13,7 +14,14 @@ from .serializers import *
 # from rest_framework.decorators import api_view, permission_classes
 # from rest_framework.views import APIView
 
-''' Redis configuration for DRF views. '''
+
+''' Logging configuration '''
+logging.basicConfig(
+    filename='logs.air', level=logging.DEBUG, format=
+    '%(asctime)s:%(levelname)s:%(funcName)s:%(message)s'
+)
+
+''' Redis configuration for DRF views '''
 redis_pool = redis.ConnectionPool(host='localhost', port=6379, db=0)
 redis_client_0 = redis.Redis(connection_pool=redis_pool, decode_responses=True)
 
@@ -49,6 +57,7 @@ class AirLineDisplay(APIView):
 
         redis_client_0.get('airline')
         serializer = AirlineSerializer(airline)
+        logging.info('Served information:', serializer.data)
         return Response(serializer.data)
 
 
@@ -67,6 +76,7 @@ class AirplaneDisplay(APIView):
 
         redis_client_0.get('airline')
         serializer = AirlineSerializer(airplane)
+        logging.info('Served information:', serializer.data)
         return Response(serializer.data)
 
 
@@ -85,4 +95,5 @@ class AirportDisplay(APIView):
 
         redis_client_0.get('airline')
         serializer = AirlineSerializer(airport)
+        logging.info('Served information:', serializer.data)
         return Response(serializer.data)

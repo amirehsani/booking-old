@@ -78,6 +78,15 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'core.wsgi.application'
 
+
+# LOGGING CONFIGURATION
+LOGGING = {
+    "first_logger": {
+        'version': 1,
+        'level': 'INFO',
+    }
+}
+
 # USING POSTGRESQL AS THE MAIN DATABASE
 DATABASES = {
     'default': {
